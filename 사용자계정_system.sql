@@ -123,9 +123,6 @@ INSERT INTO emp VALUES (10106, '아이유', '사원', '02)881-2158', 105, sysdat
 select empno, to_char(sysdate, 'YY-mm-dd AM hh24:mi:ss') from emp; // YY년, mm월, dd일, hh시(hh24하면 12시 넘어감), mi분, ss초
 select empno, to_char(sysdate, '""YYYY"-"MM"-"DD" AM "hh24":"mi":"ss"') from emp; // 업그레이드
 
-
-
---join sql문
 --조인구문
 --1)내부 조인 inner join : 두 테이블에서 조건이 일치하는 데이터만 조회(교집합)
 --방법1. 오라클 전용 구문
@@ -153,3 +150,24 @@ select e.name, d.dname, d.deptno from emp e, depart d where e.deptno(+)=d.deptno
 --full join
 select * from depart full join emp using(deptno);
 commit;
+
+
+create table school(
+  name VARCHAR2(15) not null,
+  value VARCHAR2(30),
+  code number,--1이면 학생, 2이면 교수, 3이면 관리자
+  logtime date
+);
+drop table school purge;
+desc school;
+select * from tab;
+
+
+insert into school values('홍길동', '2018001', 1,sysdate);
+insert into school values('홍길선', '컴퓨터공학부', 2,sysdate);
+insert into school values('김길관', '관리부', 3,sysdate);
+select * from school;
+select * from school where name like '%홍%';
+delete school where name='홍길동';
+commit;
+
